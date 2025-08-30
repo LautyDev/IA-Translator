@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  
+  <meta property="og:title" content="JSON/YAML Translator - AI-Powered Translation Tool" />
+  <meta property="og:description" content="Upload JSON/YAML files or paste content, select target language and translate with Groq AI. Preserves structure while translating text content." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="" />
+  <meta property="og:image" content="./assets/img/banner.png" />
+  <meta property="og:site_name" content="IA Translator" />
+  
+  <title>JSON/YAML Translator</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>JSON / YAML Translator</h1>
+    <p class="lead">Upload a file or paste content, select target language and translate with Groq AI.</p>
+
+    <div class="row">
+      <div class="col">
+        <label>Groq API Key</label>
+        <input id="apiKey" type="text" placeholder="Paste your Groq API key here (e.g. sk-...)" />
+        <div class="hint">The key is only used in your browser to call the API.</div>
+
+        <label style="margin-top:12px">Upload file (.json / .yml / .yaml)</label>
+        <input id="fileInput" type="file" accept=".json,.yml,.yaml,application/json,text/yaml" />
+
+        <label style="margin-top:12px">Or paste content</label>
+        <textarea id="contentInput" placeholder='Paste JSON or YAML here (e.g. {"key":"value"} or "key: value")'></textarea>
+
+        <div style="display:flex; gap:10px; margin-top:8px;">
+          <div style="flex:1">
+            <label>Output format</label>
+            <select id="formatForce">
+              <option value="auto">Auto (keep input format)</option>
+              <option value="json">Force JSON</option>
+              <option value="yaml">Force YAML</option>
+            </select>
+          </div>
+          <div style="width:160px">
+            <label>Target language</label>
+            <select id="targetLang">
+              <option value="en">English (en)</option>
+              <option value="es">Spanish (es)</option>
+              <option value="pt">Portuguese (pt)</option>
+              <option value="fr">French (fr)</option>
+              <option value="de">German (de)</option>
+              <option value="it">Italian (it)</option>
+              <option value="ja">Japanese (ja)</option>
+              <option value="ko">Korean (ko)</option>
+              <option value="zh">Chinese (zh)</option>
+              <option value="ru">Russian (ru)</option>
+              <option value="ar">Arabic (ar)</option>
+              <option value="hi">Hindi (hi)</option>
+              <option value="nl">Dutch (nl)</option>
+              <option value="sv">Swedish (sv)</option>
+              <option value="no">Norwegian (no)</option>
+              <option value="da">Danish (da)</option>
+              <option value="fi">Finnish (fi)</option>
+              <option value="pl">Polish (pl)</option>
+              <option value="tr">Turkish (tr)</option>
+              <option value="he">Hebrew (he)</option>
+            </select>
+          </div>
+          <div style="width:160px">
+            <label>Model</label>
+            <select id="modelSelect">
+              <option value="qwen/qwen3-32b">qwen/qwen3-32b</option>
+              <option value="deepseek-r1-distill-llama-70b">deepseek-r1-distill-llama-70b</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="controls">
+          <button id="translateBtn">🔁 Translate</button>
+        </div>
+
+        <div style="margin-top:12px;">
+          <div class="hint">The model will translate only the text content while preserving structure, keys, and formatting.</div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="response-container">
+          <div class="response-header">
+            <label>Translation result</label>
+            <div class="response-actions">
+              <button id="copyBtn" class="copy-btn" style="display: none;">📋 Copy</button>
+              <button id="downloadBtn" class="copy-btn" style="display: none;">⬇️ Download</button>
+            </div>
+          </div>
+          <pre id="responseArea">The translation will appear here.</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
